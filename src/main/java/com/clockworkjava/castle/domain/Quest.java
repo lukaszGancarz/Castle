@@ -7,7 +7,7 @@ public class Quest {
     private int id;
     private String description;
     private int reward = 100;
-    protected int lenghtInSeconds = 10;
+    protected int lenghtInSeconds = 5;
     private boolean started = false;
     private boolean completed = false;
     protected LocalDateTime startDate;

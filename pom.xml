@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>com.clockworkjava</groupId>
-	<artifactId>kursspring</artifactId>
+	<artifactId>castle</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PodstawySpringa</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Zamek</name>
+	<description>First castle project</description>
 
 	<properties>
 		<java.version>11</java.version>
