@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -26,11 +27,11 @@ public class KnightController {
     PlayerInformation playerInformation;
 
     @Autowired
-    KnightService service;
+    KnightService knightService;
 
     @RequestMapping("/knights")
     public String getKnights(Model model) {
-        List<Knight> allKnights = service.getAllKnights();
+        List<Knight> allKnights = knightService.getAllKnights();
         model.addAttribute("knights", allKnights);
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerinformation", playerInformation);
@@ -39,7 +40,7 @@ public class KnightController {
 
     @RequestMapping("/knight")
     public String getKnight(@RequestParam("id") Integer id, Model model) {
-        Knight knight = service.getKnight(id);
+        Knight knight = knightService.getKnight(id);
         model.addAttribute("knight", knight);
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerinformation", playerInformation);
@@ -66,14 +67,38 @@ public class KnightController {
         }
         else {
 
-            service.saveKnight(knight);
+            knightService.saveKnight(knight);
             return "redirect:/knights";
         }
     }
 
+    @RequestMapping("knight/edit")
+    public String editName(@PathParam("id") Integer id, Model model) {
+        Knight knight = knightService.getKnight(id);
+        model.addAttribute("knight", knight);
+        model.addAttribute("timecomponent", timeComponent);
+        model.addAttribute("playerinformation", playerInformation);
+        return "knightEdit";
+    }
+
+    @RequestMapping(value = "/editName", method = RequestMethod.POST)
+    public String editingName(Knight knight, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            System.out.println("There were errors!");
+            bindingResult.getAllErrors().forEach(objectError -> {
+                System.out.println(objectError.getObjectName() + " " + objectError.getDefaultMessage());
+            });
+            return "knightEdit"; }
+            else {
+                knightService.updateKnight(knight);
+                return "redirect:/knights";
+            }
+    }
+
     @RequestMapping(value = "/knight/delete/{id}")
     public String deleteKnight(@PathVariable("id") Integer id) {
-        service.deleteKnight(id);
+        knightService.deleteKnight(id);
         return "redirect:/knights";
     }
 }

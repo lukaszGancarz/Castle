@@ -41,7 +41,6 @@ public class QuestRepository {
 
         String description = descriptions.get(rand.nextInt(descriptions.size()));
         createQuest(description);
-
     }
 
     @Override

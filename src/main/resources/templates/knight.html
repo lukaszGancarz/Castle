@@ -15,9 +15,26 @@
 <!--            Aktualny czas <span th:text="${timecomponent.time}"/>-->
 <!--            Posiadane zloto <span th:text="${playerinformation.gold}"/>-->
 
-            <p th:text="${knight.name}"/>
-            <p th:text="${knight.age}"/>
-            <p th:text="${knight.level}"/>
+            <table class="table">
+                <thead>
+                    <td></td>
+                    <td></td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><p th:text="${knight.name}"/></td>
+                        <td><a th:href="${'/knight/edit?id='+knight.id}">Zmien</a> </td>
+                    </tr>
+
+                    <tr>
+                        <td><p th:text="${knight.age}"/></td>
+                        <td><a th:href="${'/knight/edit?id='+knight.id}">Zmien</a> </td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="${knight.level}"/></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>

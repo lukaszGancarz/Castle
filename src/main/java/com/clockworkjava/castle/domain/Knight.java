@@ -28,7 +28,7 @@ public class Knight {
     }
 
     public Knight(String name, int age) {
-        this.name = name;
+        this.name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
         this.age = age;
         this.level = 1;
     }
@@ -46,7 +46,7 @@ public class Knight {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 
     public int getAge() {
